@@ -4,6 +4,8 @@ require 'parsley-store'
 require 'spec'
 require 'spec/autorun'
 
+puts "You need to start Redis server on your machine"
+
 Spec::Runner.configure do |config|
   
 end
