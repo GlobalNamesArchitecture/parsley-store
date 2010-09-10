@@ -1,6 +1,21 @@
 = parsley-store
 
-Description goes here.
+This gem allows to dramatically increase spead of 'parsing' scientific names. 
+It stores parsed strings in Redis database and does not repeat work already done
+
+== Installation
+  
+  Make sure you have Redis installed on your localhost
+
+  gem install parsley-store
+
+== Usage
+
+  parser = ParsleyStore.new
+  parser.parse('Homo sapiens sapiens Linn. 1758)
+  parser.parse('Homo sapiens sapiens Linn. 1758)
+
+The second parse must be much faster!
 
 == Note on Patches/Pull Requests
  
