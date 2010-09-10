@@ -1,6 +1,6 @@
 = parsley-store
 
-This gem allows to dramatically increase spead of 'parsing' scientific names. 
+This gem allows to dramatically increase speed of 'parsing' scientific names. 
 It stores parsed strings in Redis database and does not repeat work already done
 
 == Installation
