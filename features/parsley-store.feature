@@ -11,4 +11,3 @@ Feature: Cached parsind of Scientific Names
     Given a clean local database
     When I parse a name "Homo sapiens sapiens (Linn.) 1758" two times
     Then second parse should be much faster
-    
