@@ -9,17 +9,19 @@ Given /^Redis server is running locally$/ do
 end
 
 Then /^I get "([^"]*)" and "([^"]*)" databases connection$/ do |local, slave|
-  @conn.select(eval("ParsleyStore::#{slave}")).should == "OK"
-  @conn.select(eval("ParsleyStore::#{local}")).should == "OK"
+  @local_db = 10
+  @slave_db = 11
+  @conn.select(@slave_db).should == "OK"
+  @conn.select(@local_db).should == "OK"
   lambda { @conn.select(200) }.should raise_error
 end
 
 Given /^a clean local database$/ do
   @conn = Redis.new
-  @conn.select(ParsleyStore::LOCAL)
+  @conn.select(@local_db)
   @conn.flushdb
   @conn.dbsize.should == 0
-  @parser = ParsleyStore.new
+  @parser = ParsleyStore.new(@local_db, @slave_db)
 end
 
 When /^I parse a name "([^"]*)" two times$/ do |name|
