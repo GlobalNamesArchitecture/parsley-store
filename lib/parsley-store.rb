@@ -16,16 +16,16 @@ class ParsleyStore
     # @slave.select(slave_db)
   end
 
-  def parse(scientific_name, fast = false)
+  def parse(scientific_name)
     stored = @local.get(scientific_name)
-    return (fast ? Marshal.load(stored) : JSON.load(stored)) if stored
+    return JSON.parse(stored, :symbolize_names => true) if stored
     begin
       parsed = @parser.parse(scientific_name)
     rescue
       @parser = ScientificNameParser.new
       parsed = @parser.parse(scientific_name)
     end
-    serialized = fast ? Marshal.dump(parsed) : parsed.to_json
+    serialized = parsed.to_json
     @local.set scientific_name, serialized
     parsed
   end
