@@ -32,6 +32,7 @@ When /^I parse a name "([^"]*)" two times$/ do |name|
 end
 
 Then /^second parse should be much faster$/ do
+  puts "%s/%s=%s", [@delta1, @delta2, @delta1/@delta2]
   (@delta1/@delta2).should > 10
 end
 

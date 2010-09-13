@@ -13,16 +13,17 @@ class ParsleyStore
     @local.select(LOCAL)
   end
 
-  def parse(scientific_name)
+  def parse(scientific_name, fast = false)
     stored = @local.get(scientific_name)
-    return stored if stored
+    return (fast ? Marshal.load(stored) : JSON.load(stored)) if stored
     begin
       parsed = @parser.parse(scientific_name)
     rescue
       @parser = ScientificNameParser.new
       parsed = @parser.parse(scientific_name)
     end
-    @local.set scientific_name, parsed
+    serialized = fast ? Marshal.dump(parsed) : parsed.to_json
+    @local.set scientific_name, serialized
     parsed
   end
 end
