@@ -7,8 +7,8 @@ class ParsleyStore
   LOCAL = 1
   SLAVE = 2
   
-  def initialize
-    @parser = ScientificNameParser.new(local_db = LOCAL, slave_db = SLAVE)
+  def initialize(local_db = LOCAL, slave_db = SLAVE)
+    @parser = ScientificNameParser.new
     @local = Redis.new
     @local.select(local_db)
     # slave replication is not set up yet, so I comment it out
