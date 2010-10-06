@@ -14,7 +14,7 @@ begin
     gem.add_development_dependency "cucumber", ">= 0"
     gem.add_dependency "biodiversity"
     gem.add_dependency "redis"
-    gem.add_dependency "SystemTimer"
+    # gem.add_dependency "SystemTimer"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
