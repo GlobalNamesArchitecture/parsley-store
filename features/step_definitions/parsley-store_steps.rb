@@ -22,14 +22,16 @@ Given /^a clean local database$/ do
   @conn.flushdb
   @conn.dbsize.should == 0
   @parser = ParsleyStore.new(@local_db, @slave_db)
+  @parse_opts = {}
 end
 
 When /^I parse a name "([^"]*)" two times$/ do |name|
   now = Time.now
-  res = @parser.parse(name)
+  @name = name
+  res = @parser.parse(@name, @parse_opts)
   @delta1 = Time.now - now
   now = Time.now
-  res = @parser.parse(name)
+  res = @parser.parse(@name, @parse_opts)
   @delta2 = Time.now - now
 end
 
@@ -37,4 +39,13 @@ Then /^second parse should be much faster$/ do
   # puts "%s/%s=%s", [@delta1, @delta2, @delta1/@delta2]
   (@delta1/@delta2).should > 10
 end
+ 
+Given /^configuration setting "([^"]*)", "([^"]*)"$/ do |setting, value|
+  @parse_opts.merge!({setting.to_sym => get_value(value)})
+end
 
+Then /^I get only "([^"]*)" as value keys$/ do |keys|
+  keys = keys.split(",").map {|i| i.strip}
+  db_keys = @conn.hkeys(@name)
+  db_keys.sort.should == keys.sort
+end

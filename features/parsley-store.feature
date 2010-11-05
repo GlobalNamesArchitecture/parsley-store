@@ -11,3 +11,10 @@ Feature: Cached parsind of Scientific Names
     Given a clean local database
     When I parse a name "Homo sapiens sapiens (Linn.) 1758" two times
     Then second parse should be much faster
+
+  Scenario: "Parsing only canonical names"
+    And a clean local database
+    Given configuration setting "canonical_only", "true"
+    When I parse a name "Homo sapiens sapiens (Linn) 1758" two times
+    Then I get only "canonical, parser_version, parsed" as value keys
+    And second parse should be much faster
