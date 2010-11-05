@@ -27,7 +27,12 @@ class ParsleyStore
 
   def get_redis_data
     if @canonical_only
-      stored = @local.hget(@scientific_name, 'canonical')
+      begin
+        stored = @local.hget(@scientific_name, 'canonical')
+      rescue RuntimeError
+        @local.flushdb
+        stored = nil
+      end
       return stored if stored
     else
       stored = @local.get(@scientific_name)
