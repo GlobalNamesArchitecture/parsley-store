@@ -45,7 +45,7 @@ class ParsleyStore
       @parser.parse(@scientific_name)
     rescue
       @parser = ScientificNameParser.new
-      @parser.parse(@scientific_name)
+      @parser.parse(@scientific_name) rescue {:scientificName => {:parsed => false, :parser_version => ScientificNameParser::VERSION, :anonical => nil, :verbatim => @scientific_name}}
     end
   end
 
