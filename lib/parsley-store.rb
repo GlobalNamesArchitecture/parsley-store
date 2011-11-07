@@ -1,6 +1,7 @@
 require 'redis'
 require 'biodiversity'
 
+raise "IMPORTANT: Parsley-store gem  requires ruby >= 1.9.1" if RUBY_VERSION < "1.9.1"
 
 class ParsleyStore
   #database numbers for Redis
