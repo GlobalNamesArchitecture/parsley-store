@@ -9,10 +9,10 @@ begin
     gem.email = "dmozzherin@gmail.com"
     gem.homepage = "http://github.com/GlobalNamesArchitecture/parsley-store"
     gem.authors = ["Dmitry Mozzherin"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "cucumber", ">= 0"
-    gem.add_dependency "biodiversity19"
-    gem.add_dependency "redis"
+    # gem.add_development_dependency "rspec", ">= 1.2.9"
+    # gem.add_development_dependency "cucumber", ">= 0"
+    # gem.add_dependency "biodiversity", "~> 3.0.1"
+    # gem.add_dependency "redis"
     # gem.add_dependency "SystemTimer"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
@@ -31,8 +31,6 @@ RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
 end
-
-task :spec => :check_dependencies
 
 begin
   require 'cucumber/rake/task'
