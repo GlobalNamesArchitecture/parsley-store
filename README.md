@@ -36,6 +36,8 @@ Contributing
 Copyright
 ---------
 
-Authors: [Dmitry Mozzherin][12] 
+Authors: [Dmitry Mozzherin][1] 
 
 Copyright (c) 2010-2014 Marine Biological Laboratory. See LICENSE for details.
+
+[1]: https://github.com/dimus
