@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'biodiversity', '~> 3.1'
-gem 'redis', '~> 3.0'
+group :production do
+  gem 'biodiversity', '~> 3.1'
+  gem 'redis', '~> 3.0'
+end
 
 group :test do
   gem 'rspec', '~> 2.14'
