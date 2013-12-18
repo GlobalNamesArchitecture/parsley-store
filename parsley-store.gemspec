@@ -1,5 +1,5 @@
 # coding: utf-8
-require_relative 'lib/parsley-store/version'
+require File.expand_path('../lib/parsley-store/version', __FILE__)
 
 Gem::Specification.new do |sp|
   sp.name          = 'parsley-store'
