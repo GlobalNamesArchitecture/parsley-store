@@ -14,15 +14,15 @@ Installation
 Usage
 -----
 
-  parser = ParsleyStore.new
-  parser.parse('Homo sapiens sapiens Linn. 1758')
-  parser.parse('Homo sapiens sapiens Linn. 1758')
+    parser = ParsleyStore.new
+    parser.parse('Homo sapiens sapiens Linn. 1758')
+    parser.parse('Homo sapiens sapiens Linn. 1758')
 
 The second parse must be much faster!
 
 To get only canonical name:
 
-  parser.parse('Homo sapiens sapiens Linn. 1758', :canonical_only => true)
+    parser.parse('Homo sapiens sapiens Linn. 1758', canonical_only: true)
 
 Contributing
 ------------
