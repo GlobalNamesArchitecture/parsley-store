@@ -20,3 +20,5 @@ pkg
 parsley-store.gemspec
 
 ## PROJECT::SPECIFIC
+.bundle
+bundle_bin

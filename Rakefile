@@ -1,56 +1,26 @@
-require 'rake'
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "parsley-store"
-    gem.summary = %Q{Scientific Names Parser with Cached Results}
-    gem.description = %Q{Scientific names parser/atomizer with cached distributed storage of atomized data}
-    gem.email = "dmozzherin@gmail.com"
-    gem.homepage = "http://github.com/GlobalNamesArchitecture/parsley-store"
-    gem.authors = ["Dmitry Mozzherin"]
-    # gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem.add_development_dependency "cucumber", ">= 0"
-    # gem.add_dependency "biodiversity", "~> 3.0.1"
-    # gem.add_dependency "redis"
-    # gem.add_dependency "SystemTimer"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
-
+require 'bundler'
+require 'bundler/gem_tasks'
 require 'rspec/core'
 require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb']
-end
+require 'cucumber'
+require 'cucumber/rake/task'
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
+Bundler::GemHelper.install_tasks
 
 begin
-  require 'cucumber/rake/task'
-  Cucumber::Rake::Task.new(:features)
-
-  task :features => :check_dependencies
-rescue LoadError
-  task :features do
-    abort "Cucumber is not available. In order to run features, you must: sudo gem install cucumber"
-  end
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts 'Run `bundle install` to install missing gems'
+  exit e.status_code
 end
 
 task :default => :spec
 
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = 'spec/**/*spec.rb'
+end
 
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "name-stapler #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+Cucumber::Rake::Task.new(:features) do |t|
+  t.cucumber_opts = "features --format pretty"
 end

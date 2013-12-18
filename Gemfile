@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'biodiversity', '~> 3.1.0'
+gem 'biodiversity', '~> 3.1'
 gem 'redis', '~> 3.0'
-gem 'jeweler', '~> 1.8'
 
 group :test do
   gem 'rspec', '~> 2.13'
