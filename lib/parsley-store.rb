@@ -2,7 +2,9 @@ require 'redis'
 require 'biodiversity'
 require_relative 'parsley-store/version'
 
-raise "IMPORTANT: Parsley-store gem  requires ruby >= 1.9.1" if RUBY_VERSION < "1.9.1"
+if RUBY_VERSION < '1.9.1'
+  raise 'IMPORTANT: Parsley-store gem  requires ruby >= 1.9.1' 
+end
 
 class ParsleyStore
   #database numbers for Redis
@@ -38,7 +40,7 @@ class ParsleyStore
       return stored if stored
     else
       stored = @local.get(@scientific_name)
-      return JSON.parse(stored, :symbolize_names => true) if stored
+      return JSON.parse(stored, symbolize_names: true) if stored
     end
   end
 
@@ -47,15 +49,24 @@ class ParsleyStore
       @parser.parse(@scientific_name)
     rescue
       @parser = ScientificNameParser.new
-      @parser.parse(@scientific_name) rescue {:scientificName => {:parsed => false, :parser_version => ScientificNameParser::VERSION, :anonical => nil, :verbatim => @scientific_name}}
+      @parser.parse(@scientific_name) rescue {
+        scientificName: {parsed: false, 
+                         parser_version: ScientificNameParser::VERSION, 
+                         anonical: nil, 
+                         verbatim: @scientific_name}}
     end
   end
 
   def cache_parsed_data(parsed_data)
     if @canonical_only
-      @local.hset @scientific_name, 'parsed',  parsed_data[:scientificName][:parsed]
-      @local.hset @scientific_name, 'parser_version', parsed_data[:scientificName][:parser_version]
-      @local.hset @scientific_name, 'canonical', parsed_data[:scientificName][:canonical]
+      @local.hset(@scientific_name, 
+                  'parsed',  
+                  parsed_data[:scientificName][:parsed])
+      @local.hset(@scientific_name, 
+                  'parser_version', 
+                  parsed_data[:scientificName][:parser_version])
+      @local.hset(@scientific_name, 
+                  'canonical', parsed_data[:scientificName][:canonical])
       parsed_data[:scientificName][:canonical]
     else
       serialized = parsed_data.to_json
