@@ -1,5 +1,5 @@
 # coding: utf-8
-require_relative 'lib/parsley-store'
+require File.expand_path('../lib/parsley-store', __FILE__)
 
 Gem::Specification.new do |sp|
   sp.name          = 'parsley-store'
@@ -19,6 +19,7 @@ Gem::Specification.new do |sp|
   sp.add_runtime_dependency 'biodiversity', '~> 3.1'
   sp.add_runtime_dependency 'redis', '~> 3.0'
 
+  sp.add_development_dependency 'rake', '~> 10.1'
   sp.add_development_dependency 'rspec', '~> 2.14'
   sp.add_development_dependency 'cucumber', '~> 1.3'
   sp.add_development_dependency 'coveralls', '~> 0.7'
