@@ -1,20 +1,21 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+describe ParsleyStore do
+  subject { ParsleyStore.new }
 
-describe "ParsleyStore" do
-  it "should intialize ParsleyStore" do
-    p = ParsleyStore.new()
-    p.is_a?(ParsleyStore).should be_true
+  describe ".new" do
+    it { is_expected.to be_kind_of ParsleyStore }
   end
 
-  it "should be able to parse a name" do
-    p = ParsleyStore.new()
-    res = p.parse("Betula verucosa (Linn.) Kunze")
-    res[:scientificName][:parsed].should be_true
-  end
+  describe "#parse"
+    
+    it "parses a name" do
+      res = subject.parse("Betula verucosa (Linn.) Kunze")
+      expect(res[:scientificName][:parsed]).to be true
+    end
 
-  it "should be able to parse with only canonical name output" do
-    p = ParsleyStore.new()
-    res = p.parse("Betula alba Shipunov Kunze 1955", :canonical_only => true)
-    res.should == "Betula alba"
-  end
+    context "canonical only" do
+      it "returns canonical form" do
+        res = subject.parse("Betula alba Shipunov Kunze 1955", canonical_only: true)
+        expect(res).to eq "Betula alba"
+      end
+    end
 end

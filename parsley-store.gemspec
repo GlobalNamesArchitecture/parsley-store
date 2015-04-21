@@ -20,7 +20,7 @@ Gem::Specification.new do |sp|
   sp.add_runtime_dependency 'redis', '~> 3.0'
 
   sp.add_development_dependency 'rake', '~> 10.1'
-  sp.add_development_dependency 'rspec', '~> 2.14'
-  sp.add_development_dependency 'cucumber', '~> 1.3'
+  sp.add_development_dependency 'rspec', '~> 3.2'
+  sp.add_development_dependency 'cucumber', '~> 2.0'
   sp.add_development_dependency 'coveralls', '~> 0.7'
 end
