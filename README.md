@@ -7,12 +7,12 @@ parsley-store
 [![CodePolice][7]][8]
 [![Dependency Status][9]][10]
 
-This gem allows to dramatically increase speed of 'parsing' scientific names. 
+This gem allows to dramatically increase speed of 'parsing' scientific names.
 It stores parsed strings in Redis database and does not repeat work already done
 
 Installation
 ------------
-  
+
   Make sure you have Redis installed on your localhost
 
   gem install parsley-store
@@ -42,18 +42,18 @@ Contributing
 Copyright
 ---------
 
-Authors: [Dmitry Mozzherin][11] 
+Authors: [Dmitry Mozzherin][11]
 
 Copyright (c) 2010-2014 Marine Biological Laboratory. See LICENSE for details.
 
-[1]: https://badge.fury.io/rb/parsley-store.png
+[1]: https://badge.fury.io/rb/parsley-store.svg
 [2]: http://badge.fury.io/rb/parsley-store
-[3]: https://secure.travis-ci.org/GlobalNamesArchitecture/parsley-store.png
+[3]: https://secure.travis-ci.org/GlobalNamesArchitecture/parsley-store.svg
 [4]: http://travis-ci.org/GlobalNamesArchitecture/parsley-store
-[5]: https://coveralls.io/repos/GlobalNamesArchitecture/parsley-store/badge.png?branch=master
+[5]: https://coveralls.io/repos/GlobalNamesArchitecture/parsley-store/badge.svg?branch=master
 [6]: https://coveralls.io/r/GlobalNamesArchitecture/parsley-store?branch=master
-[7]: https://codeclimate.com/github/GlobalNamesArchitecture/parsley-store.png
+[7]: https://codeclimate.com/github/GlobalNamesArchitecture/parsley-store.svg
 [8]: https://codeclimate.com/github/GlobalNamesArchitecture/parsley-store
-[9]: https://gemnasium.com/GlobalNamesArchitecture/parsley-store.png
+[9]: https://gemnasium.com/GlobalNamesArchitecture/parsley-store.svg
 [10]: https://gemnasium.com/GlobalNamesArchitecture/parsley-store
 [11]: https://github.com/dimus
